@@ -23,11 +23,11 @@ export interface TMGrammarScope {
 }
 
 export interface TMGrammar {
-	name: string;
+	name?: string;
 	scopeName: string;
 	injectionSelector?: string;
 	patterns: TMGrammarScope[];
-	repository: {
+	repository?: {
 		[key: string]: TMGrammarScope;
 	};
 }

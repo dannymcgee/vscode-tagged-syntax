@@ -1,13 +1,76 @@
 import * as fs from 'fs-extra';
+
 import { JsonObject, TMGrammar } from '../src/types';
-import gram from '../src';
+import tagged from '../src';
+import { regexInterp, htmlInterp, glslInterp } from '../src/interpolation';
 
-main();
+interface GrammarConfig {
+	grammar: TMGrammar;
+	name: string;
+	embeddedLang?: string;
+}
 
-function main(): number {
-	build(gram, 'foo');
+(async function () {
+	// prettier-ignore
+	await build([{
+		grammar: regexInterp,
+		name: 'regex',
+		embeddedLang: 'typescript',
+	}, {
+		grammar: htmlInterp,
+		name: 'html',
+	}, {
+		grammar: glslInterp,
+		name: 'glsl',
+	}]);
+})();
 
-	return 0;
+async function build(grammars: GrammarConfig[]) {
+	let taggedJson = toJson(tagged);
+	let taggedContent = JSON.stringify(taggedJson, null, '\t');
+
+	await fs.ensureDir('dist');
+	await fs.writeFile(`dist/tagged.tmLanguage.json`, taggedContent);
+
+	await Promise.all(
+		grammars.map(async (g) => {
+			let content = JSON.stringify(g.grammar, null, '\t');
+			await fs.writeFile(
+				`dist/${g.name}-interp.tmLanguage.json`,
+				content,
+			);
+		}),
+	);
+
+	let packageJson = (await fs.readFile('package.base.json')).toString();
+	let pkg = JSON.parse(packageJson);
+
+	let injectTo = ['source.js', 'source.jsx', 'source.ts', 'source.tsx'];
+	let taggedGrammar = {
+		scopeName: 'source.tagged',
+		embeddedLanguages: {},
+		path: './dist/tagged.tmLanguage.json',
+		injectTo,
+	};
+
+	grammars.forEach((g) => {
+		pkg.contributes.grammars.push({
+			scopeName: `source.tagged.${g.name}.interpolation`,
+			embeddedLanguages: {
+				'meta.template.expression.ts': 'typescript',
+			},
+			path: `./dist/${g.name}-interp.tmLanguage.json`,
+			injectTo,
+		});
+
+		let key = g.grammar.injectionSelector!.match(/^L:(\S+)/)![1];
+		taggedGrammar.embeddedLanguages[key] = g.embeddedLang ?? g.name;
+	});
+
+	pkg.contributes.grammars.unshift(taggedGrammar);
+
+	packageJson = JSON.stringify(pkg, null, '\t');
+	await fs.writeFile('package.json', packageJson);
 }
 
 function toJson(grammar: TMGrammar): JsonObject {
@@ -24,14 +87,4 @@ function toJson(grammar: TMGrammar): JsonObject {
 				: toJson(value)
 	}
 	return processed;
-}
-
-async function build(grammar: TMGrammar, name: string) {
-	let processed = toJson(grammar);
-	let content = JSON.stringify(processed, null, '  ');
-
-	await fs.ensureDir('dist');
-	await fs.writeFile(`dist/${name}.tmLanguage.json`, content);
-
-	console.log('Done!');
 }
