@@ -21,7 +21,9 @@
 				"embeddedLanguages": {
 					"meta.embedded.regexp.ts": "typescript",
 					"meta.embedded.html": "html",
-					"meta.embedded.glsl": "glsl"
+					"meta.embedded.template": "template",
+					"meta.embedded.glsl": "glsl",
+					"meta.embedded.markdown": "markdown"
 				},
 				"path": "./dist/tagged.tmLanguage.json",
 				"injectTo": [
@@ -45,6 +47,19 @@
 				]
 			},
 			{
+				"scopeName": "source.tagged.re.interpolation",
+				"embeddedLanguages": {
+					"meta.template.expression.ts": "typescript"
+				},
+				"path": "./dist/re-interp.tmLanguage.json",
+				"injectTo": [
+					"source.js",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				]
+			},
+			{
 				"scopeName": "source.tagged.html.interpolation",
 				"embeddedLanguages": {
 					"meta.template.expression.ts": "typescript"
@@ -58,11 +73,37 @@
 				]
 			},
 			{
+				"scopeName": "source.tagged.template.interpolation",
+				"embeddedLanguages": {
+					"meta.template.expression.ts": "typescript"
+				},
+				"path": "./dist/template-interp.tmLanguage.json",
+				"injectTo": [
+					"source.js",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				]
+			},
+			{
 				"scopeName": "source.tagged.glsl.interpolation",
 				"embeddedLanguages": {
 					"meta.template.expression.ts": "typescript"
 				},
 				"path": "./dist/glsl-interp.tmLanguage.json",
+				"injectTo": [
+					"source.js",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				]
+			},
+			{
+				"scopeName": "source.tagged.markdown.interpolation",
+				"embeddedLanguages": {
+					"meta.template.expression.ts": "typescript"
+				},
+				"path": "./dist/markdown-interp.tmLanguage.json",
 				"injectTo": [
 					"source.js",
 					"source.jsx",

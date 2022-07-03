@@ -2,7 +2,13 @@ import * as fs from 'fs-extra';
 
 import { JsonObject, TMGrammar } from '../src/types';
 import tagged from '../src';
-import { regexInterp, htmlInterp, glslInterp } from '../src/interpolation';
+import {
+	regexInterp,
+	htmlInterp,
+	templateInterp,
+	glslInterp,
+	markdownInterp,
+} from '../src/interpolation';
 
 interface GrammarConfig {
 	grammar: TMGrammar;
@@ -17,11 +23,22 @@ interface GrammarConfig {
 		name: 'regex',
 		embeddedLang: 'typescript',
 	}, {
+		grammar: regexInterp,
+		name: 're',
+		embeddedLang: 'typescript',
+	}, {
 		grammar: htmlInterp,
 		name: 'html',
+		embeddedLang: 'html',
+	}, {
+		grammar: templateInterp,
+		name: 'template',
 	}, {
 		grammar: glslInterp,
 		name: 'glsl',
+	}, {
+		grammar: markdownInterp,
+		name: 'markdown',
 	}]);
 })();
 
