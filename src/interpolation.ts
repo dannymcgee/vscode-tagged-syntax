@@ -10,3 +10,4 @@ export const scssInterp = interpGrammar('scss');
 export const sassInterp = interpGrammar('sass');
 export const glslInterp = interpGrammar('glsl');
 export const markdownInterp = interpGrammar('markdown');
+export const sqlInterp = interpGrammar('sql');

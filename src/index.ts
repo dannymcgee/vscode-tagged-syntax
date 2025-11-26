@@ -15,6 +15,7 @@ const grammar: TMGrammar = {
 		{ include: '#sass-template' },
 		{ include: '#glsl-template' },
 		{ include: '#markdown-template' },
+		{ include: '#sql-template' },
 	],
 	repository: {
 		'regex-template': templateScope('regex', 'source.ts', {
@@ -32,6 +33,7 @@ const grammar: TMGrammar = {
 		'markdown-template': templateScope('markdown', 'text.html.markdown', {
 			begin: /\b(md)(`)/,
 		}),
+		'sql-template': templateScope('sql', 'source.sql'),
 		// prettier-ignore
 		interpolation: {
 			begin: /\$\{/,

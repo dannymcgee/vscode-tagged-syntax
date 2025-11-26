@@ -26,7 +26,8 @@
 					"meta.embedded.scss": "scss",
 					"meta.embedded.sass": "sass",
 					"meta.embedded.glsl": "glsl",
-					"meta.embedded.markdown": "markdown"
+					"meta.embedded.markdown": "markdown",
+					"meta.embedded.sql": "sql"
 				},
 				"path": "./dist/tagged.tmLanguage.json",
 				"injectTo": [
@@ -146,6 +147,19 @@
 					"meta.template.expression.ts": "typescript"
 				},
 				"path": "./dist/markdown-interp.tmLanguage.json",
+				"injectTo": [
+					"source.js",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				]
+			},
+			{
+				"scopeName": "source.tagged.sql.interpolation",
+				"embeddedLanguages": {
+					"meta.template.expression.ts": "typescript"
+				},
+				"path": "./dist/sql-interp.tmLanguage.json",
 				"injectTo": [
 					"source.js",
 					"source.jsx",

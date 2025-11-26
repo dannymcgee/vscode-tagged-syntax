@@ -11,6 +11,7 @@ import {
 	cssInterp,
 	scssInterp,
 	sassInterp,
+	sqlInterp,
 } from '../src/interpolation';
 
 interface GrammarConfig {
@@ -51,6 +52,9 @@ interface GrammarConfig {
 	}, {
 		grammar: markdownInterp,
 		name: 'markdown',
+	}, {
+		grammar: sqlInterp,
+		name: 'sql',
 	}]);
 })();
 
