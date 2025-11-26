@@ -4,7 +4,7 @@ import { templateScope } from './utility';
 const grammar: TMGrammar = {
 	name: 'Tagged',
 	scopeName: 'source.tagged',
-	injectionSelector: 'L:source -comment',
+	injectionSelector: 'L:source -comment -string',
 	patterns: [
 		{ include: '#regex-template' },
 		{ include: '#re-template' },

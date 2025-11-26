@@ -18,7 +18,7 @@ export function templateScope(
 	overrides: Partial<TMGrammarScope> = {},
 ): TMGrammarScope {
 	return {
-		begin: `(${id})(\`)`,
+		begin: `\\b(${id})(\`)`,
 		beginCaptures: {
 			1: { name: `entity.name.function.tagged-${id}.ts` },
 			2: { name: `punctuation.definition.string.template.begin.ts` },
