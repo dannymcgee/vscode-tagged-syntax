@@ -51,9 +51,14 @@ bothered to clean it up or document anything. If you've somehow stumbled across
 this and want to use it, just clone it and run:
 
 ```sh
-> yarn # install dependencies
-> yarn test-run # build and install the extension
+> npm ci # install dependencies
+> npm run test-run # build and install the extension
 ```
+Note: The `test-run` script invokes the VS Code CLI's `--install-extension`
+command, which doesn't seem to handle profiles correctly. If you find that it
+didn't actually install the extension to your active profile, you can
+right-click the .vsix file in the VS Code explorer and select "Install
+Extension" from the context menu.
 
 Some day I might clean it up and publish it to the VS Code marketplace. But I
 have a lot of projects competing for my attention, so probably not. :)
