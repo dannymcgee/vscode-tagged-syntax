@@ -27,3 +27,15 @@ let markdown = md`
 # Heading
 Here's some text!
 `;
+
+let query = sql`
+select Student.ID
+	from Student, Apply
+	where Student.ID=Apply.ID
+		and GPA>3.7
+		and college='Stanford'
+`;
+
+let foo = `don't break highlighting: sql`;
+let bar = `don't break highlighting: css`;
+let baz = re`/\`foo\`/g`;
