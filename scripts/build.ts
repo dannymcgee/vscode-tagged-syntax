@@ -8,6 +8,9 @@ import {
 	templateInterp,
 	glslInterp,
 	markdownInterp,
+	cssInterp,
+	scssInterp,
+	sassInterp,
 } from '../src/interpolation';
 
 interface GrammarConfig {
@@ -33,6 +36,15 @@ interface GrammarConfig {
 	}, {
 		grammar: templateInterp,
 		name: 'template',
+	}, {
+		grammar: cssInterp,
+		name: 'css',
+	}, {
+		grammar: scssInterp,
+		name: 'scss',
+	}, {
+		grammar: sassInterp,
+		name: 'sass',
 	}, {
 		grammar: glslInterp,
 		name: 'glsl',

@@ -2,7 +2,7 @@
 	"name": "tagged-grammar",
 	"description": "VSCode TextMate grammar for Tagged",
 	"displayName": "vscode-tagged-grammar",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"main": "index.js",
 	"author": "Danny McGee <dannymcgee@gmail.com>",
 	"publisher": "dannymcgee",
@@ -22,6 +22,9 @@
 					"meta.embedded.regexp.ts": "typescript",
 					"meta.embedded.html": "html",
 					"meta.embedded.template": "template",
+					"meta.embedded.css": "css",
+					"meta.embedded.scss": "scss",
+					"meta.embedded.sass": "sass",
 					"meta.embedded.glsl": "glsl",
 					"meta.embedded.markdown": "markdown"
 				},
@@ -78,6 +81,45 @@
 					"meta.template.expression.ts": "typescript"
 				},
 				"path": "./dist/template-interp.tmLanguage.json",
+				"injectTo": [
+					"source.js",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				]
+			},
+			{
+				"scopeName": "source.tagged.css.interpolation",
+				"embeddedLanguages": {
+					"meta.template.expression.ts": "typescript"
+				},
+				"path": "./dist/css-interp.tmLanguage.json",
+				"injectTo": [
+					"source.js",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				]
+			},
+			{
+				"scopeName": "source.tagged.scss.interpolation",
+				"embeddedLanguages": {
+					"meta.template.expression.ts": "typescript"
+				},
+				"path": "./dist/scss-interp.tmLanguage.json",
+				"injectTo": [
+					"source.js",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				]
+			},
+			{
+				"scopeName": "source.tagged.sass.interpolation",
+				"embeddedLanguages": {
+					"meta.template.expression.ts": "typescript"
+				},
+				"path": "./dist/sass-interp.tmLanguage.json",
 				"injectTo": [
 					"source.js",
 					"source.jsx",
