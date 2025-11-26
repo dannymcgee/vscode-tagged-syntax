@@ -30,7 +30,7 @@ const grammar: TMGrammar = {
 		'sass-template': templateScope('sass', 'source.sass'),
 		'glsl-template': templateScope('glsl', 'source.glsl'),
 		'markdown-template': templateScope('markdown', 'text.html.markdown', {
-			begin: /(md)(`)/,
+			begin: /\b(md)(`)/,
 		}),
 		// prettier-ignore
 		interpolation: {
