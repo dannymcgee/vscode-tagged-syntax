@@ -19,9 +19,9 @@
 	},
 	"scripts": {
 		"build": "ts-node scripts/build.ts",
-		"package": "yarn build && vsce package",
+		"package": "npm run build && vsce package",
 		"install-package": "ts-node scripts/install.ts",
-		"test-run": "yarn package && yarn install-package"
+		"test-run": "npm run package && npm run install-package"
 	},
 	"activationEvents": [
 		"onLanguage:javascript",
