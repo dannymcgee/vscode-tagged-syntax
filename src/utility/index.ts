@@ -23,9 +23,11 @@ export function templateScope(
 			1: { name: `entity.name.function.tagged-${id}.ts` },
 			2: { name: `punctuation.definition.string.template.begin.ts` },
 		},
-		end: /(`)/,
+		// Don't match \` , do match \\`
+		end: /(?<!\\)(`)|(?<=\\\\)(`)/,
 		endCaptures: {
 			1: { name: `punctuation.definition.string.template.end.ts` },
+			2: { name: `punctuation.definition.string.template.end.ts` },
 		},
 		contentName: `meta.embedded.${id}`,
 		patterns: [
